@@ -2,15 +2,10 @@
 
 ![banner](banner.png "eureka")
 
-A repository containing [Java](https://www.java.com/en/), [Scala](https://scala-lang.org/) & [Python](https://www.python.org/) solutions for problems regarding algorithms and data structures! 
-The projects are shipped with a testing environment for learning and experimenting.
+A repository containing [Java](https://www.java.com/en/), [Scala](https://scala-lang.org/) & [Python](https://www.python.org/) solutions for problems regarding algorithms and data structures!
+The projects are shipped with a testing environment for learning and experimenting.\
+Download all the repositories by running `git clone --recurse-submodules https://github.com/leowajda/eurek.git`. Installation instructions can be found in the project's documentation.
 
-## :pushpin: Installation
-
-```shell
-$ git clone --recurse-submodules https://github.com/leowajda/eurek.git # clone the repository from GitHub
-$ cd eureka                                        # navigate to root directory 
-```
 
 ## :pencil2: Index
 
