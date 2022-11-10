@@ -2,7 +2,7 @@ import pandas as pd
 from pathlib import Path
 from functools import reduce
 
-subdirs = [x.name for x in Path('.').iterdir() if x.is_dir() and 'eureka-' in x.name]
+subdirs = [x for x in Path('.').iterdir() if x.is_dir() and 'eureka-' in x.name]
 frames = [pd.read_csv(f'./eureka-scraper/{dir}/docs/data.csv') for dir in subdirs]
 
 join = reduce(lambda left, right: pd.merge(left, right, how='outer', on=['ID', 'Name']), frames)
