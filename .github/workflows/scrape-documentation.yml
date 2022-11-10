@@ -17,15 +17,8 @@ jobs:
       - name: Configure environment
         id: build
         uses: actions/checkout@v3
-      - run: git submodule update --remote --merge
-
-      - name: Retrieve changed submodules
-        id: changed-submodules
-        uses: tj-actions/changed-files@v34
         with:
-          since_last_remote_commit: true
-          dir_names: "true"
-          separator: " "
+          fetch-depth: 0
 
       - name: Configure Python
         uses: actions/setup-python@v4
@@ -33,9 +26,9 @@ jobs:
           python-version: '3.9'
 
       - run: pip install -r .github/workflows/requirements.txt
-      - run: python .github/workflows/scraper.py ${{ steps.changed-submodules.outputs.all_changed_and_modified_files }}
+      - run: python .github/workflows/scraper.py
 
       - name: Auto-commit
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
-          commit_message: ":octocat: Update /docs and README.md"
+          commit_message: ":octocat: Update README.md"
