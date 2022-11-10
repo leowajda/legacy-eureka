@@ -30,7 +30,7 @@ jobs:
         with:
           python-version: '3.9'
           cache: 'pip'
-      - run: pip install -r leowajda/eureka-scraper/.github/workflows/requirements.txt@master
+      - run: pip install -r .github/workflows/requirements.txt
       - run: python .github/workflows/script.py ${{ github.event.repository.url }} ${{ steps.changed-files.outputs.all_changed_files }}
 
 
