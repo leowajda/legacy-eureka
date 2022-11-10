@@ -14,22 +14,23 @@ jobs:
 
     steps:
 
-      - name: Checkout
+      - name: 📦 Checkout
         uses: actions/checkout@v3
         with:
           submodules: 'true'
 
-      - name: Setup Python
+      - name: 📦️ Setup Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.9'
 
-      - name: Run script
-        run: |
-          pip install -r .github/workflows/requirements.txt
-          python .github/workflows/scraper.py
+      - name: 📌 Install pip dependencies
+        run: pip install -r .github/workflows/requirements.txt
 
-      - name: Auto-commit
+      - name: 🚀 Run script
+        run: python .github/workflows/scraper.py
+
+      - name: ✨ Auto-commit
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
           commit_message: ":octocat: Update README.md"
