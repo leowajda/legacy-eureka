@@ -27,12 +27,16 @@ jobs:
           since_last_remote_commit: true
           dir_names: "true"
           separator: " "
-      - run: echo ${{ steps.changed-submodules.outputs.all_changed_and_modified_files }}
 
       - name: Configure Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.9'
-      - run: |
-          pip install -r .github/workflows/requirements.txt
-          python .github/workflows/scraper.py ${{ steps.changed-submodules.outputs.all_changed_and_modified_files }}
+
+      - run: pip install -r .github/workflows/requirements.txt
+      - run: python .github/workflows/scraper.py ${{ steps.changed-submodules.outputs.all_changed_and_modified_files }}
+
+      - name: Auto-commit
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: ":octocat: Update /docs and README.md"
