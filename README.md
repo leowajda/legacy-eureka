@@ -1,6 +1,6 @@
 # :books: eureka
 
-![banner](docs/banner.png "eureka")
+![banner](./docs/banner.png "banner")
 
 A repository containing [Java](https://www.github.com/leowajda/eureka-java), [Scala](https://www.github.com/leowajda/eureka-scala) & [Python](https://www.github.com/leowajda/eureka-python) solutions for problems regarding algorithms and data structures!
 The projects are shipped with a testing environment for learning and experimenting.\
