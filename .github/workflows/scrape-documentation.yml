@@ -17,8 +17,7 @@ jobs:
       - name: Configure environment
         id: build
         uses: actions/checkout@v3
-      - run: |
-          git submodule update --remote --merge
+      - run: git submodule update --remote --merge
 
       - name: Retrieve changed submodules
         id: changed-submodules
