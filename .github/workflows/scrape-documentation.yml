@@ -1,0 +1,37 @@
+name: Scrape README.md
+run-name: 🚀 Update README.md
+
+on:
+  push:
+    branches:
+      - test
+  schedule:
+    - cron:  '30 5,17 * * *'
+
+jobs:
+  scrape-documentation:
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Configure environment
+        id: build
+        uses: actions/checkout@v3
+        run: |
+          git submodule update --remote --merge
+
+      - name: Retrieve changed submodules
+        id: changed-submodules
+        with:
+          since_last_remote_commit: true
+          dir_names: "true"
+          separator: " "
+        run: echo ${{ steps.changed-submodules.outputs.all_changed_and_modified_files }}
+
+      - name: Configure Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+        run: |
+          pip install -r .github/workflows/requirements.txt
+          python .github/workflows/scraper.py ${{ steps.changed-submodules.outputs.all_changed_and_modified_files }}
