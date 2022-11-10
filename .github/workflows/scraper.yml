@@ -4,24 +4,30 @@ run-name: 🚀 Update README.md
 on:
   push:
     branches:
-      - test
+      - master
   schedule:
     - cron:  '30 5,17 * * *'
 
 jobs:
-  scrape-documentation:
+  scraper:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+
+      - name: Checkout
+        uses: actions/checkout@v3
         with:
           submodules: 'true'
-      - uses: actions/setup-python@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
         with:
           python-version: '3.9'
 
-      - run: pip install -r .github/workflows/requirements.txt
-      - run: python .github/workflows/scraper.py
+      - name: Run script
+        run: |
+          pip install -r .github/workflows/requirements.txt
+          python .github/workflows/scraper.py
 
       - name: Auto-commit
         uses: stefanzweifel/git-auto-commit-action@v4
