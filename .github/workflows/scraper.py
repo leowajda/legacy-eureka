@@ -3,7 +3,7 @@ from pathlib import Path
 from functools import reduce
 
 p = Path('.')
-subdirs = [x / 'docs' / 'data.csv' for x in p.iterdir() if x.is_dir() and 'eureka-' in x.name]
+subdirs = [(x / 'docs' / 'data.csv').exists() for x in p.iterdir() if x.is_dir() and 'eureka-' in x.name]
 print(subdirs)
 frames = [pd.read_csv(f'/home/runner/work/eureka-scraper/eureka-scraper/{dir}/docs/data.csv') for dir in subdirs]
 
