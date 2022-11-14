@@ -33,13 +33,11 @@ jobs:
         id: changed-files
         uses: tj-actions/changed-files@v34
         with:
-          path: code
-          separator: " "
           since_last_remote_commit: true
-          files_ignore: |
-            ${{ inputs.file-ignore }}
-          files: |
-            ${{ inputs.path-filter }}
+          files_ignore: ${{ inputs.file-ignore }}
+          files: ${{ inputs.path-filter }}
+          separator: " "
+          path: code
 
       - name: 📦️ Setup Python
         uses: actions/setup-python@v4
