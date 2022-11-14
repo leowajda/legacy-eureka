@@ -1,0 +1,57 @@
+on:
+  workflow_call:
+    inputs:
+      path-filter:
+        description: 'Path containing the source code.'
+        required: true
+        type: string
+      file-ignore:
+        description: 'Files to be ignored.'
+        default: ''
+        required: false
+        type: string
+
+jobs:
+  updater:
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: 📦 Checkout caller
+        uses: actions/checkout@v3
+        with:
+          path: code
+          fetch-depth: 0
+
+      - name: 📦 Checkout eureka-scraper
+        uses: actions/checkout@v3
+        with:
+          path: script
+          repository: leowajda/eureka-scraper
+
+      - name: 🦺 Retrieve changed files
+        id: changed-files
+        uses: tj-actions/changed-files@v34
+        with:
+          since_last_remote_commit: true
+          files_ignore: ${{ inputs.file-ignore }}
+          files: ${{ inputs.path-filter }}
+          separator: " "
+          path: code
+
+      - name: 📦️ Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      - name: 📌 Install pip dependencies
+        run: pip install -r script/.github/workflows/requirements.txt
+
+      - name: 🚀 Run script
+        run: python script/.github/workflows/script.py ${{ github.event.repository.url }} ${{ steps.changed-files.outputs.all_changed_files }}
+
+      - name: ✨ Auto-commit
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: ":octocat: Update /docs and README.md"
+          repository: code
