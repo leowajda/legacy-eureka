@@ -20,20 +20,25 @@ jobs:
       - name: 📦 Checkout caller
         uses: actions/checkout@v3
         with:
+          path: code
           fetch-depth: 0
 
       - name: 📦 Checkout eureka-scraper
         uses: actions/checkout@v3
         with:
+          path: script
           repository: leowajda/eureka-scraper
-          path: eureka-scraper
+
+      - run: |
+          echo ${{ github.event.repository.name }}
 
       - name: 🦺 Retrieve changed files
         id: changed-files
         uses: tj-actions/changed-files@v34
         with:
-          since_last_remote_commit: true
+          path: code
           separator: " "
+          since_last_remote_commit: true
           files_ignore: |
             ${{ inputs.file-ignore }}
           files: |
@@ -45,12 +50,13 @@ jobs:
           python-version: '3.9'
 
       - name: 📌 Install pip dependencies
-        run: pip install -r eureka-scraper/.github/workflows/requirements.txt
+        run: pip install -r script/.github/workflows/requirements.txt
 
       - name: 🚀 Run script
-        run: python eureka-scraper/.github/workflows/script.py ${{ github.event.repository.url }} ${{ steps.changed-files.outputs.all_changed_files }}
+        run: python script/.github/workflows/script.py ${{ github.event.repository.url }} ${{ steps.changed-files.outputs.all_changed_files }}
 
       - name: ✨ Auto-commit
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
           commit_message: ":octocat: Update /docs and README.md"
+          repository: code
