@@ -19,6 +19,14 @@ jobs:
         with:
           submodules: 'true'
 
+      - name: ⬆️ Update submodules
+        run: git submodule update --remote --merge
+
+      - name: ✨ Auto-commit
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: ":arrow_up: Upgrade submodules"
+
       - name: 📦️ Setup Python
         uses: actions/setup-python@v4
         with:
