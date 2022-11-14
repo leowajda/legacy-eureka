@@ -1,3 +1,4 @@
+import os
 import subprocess
 import pandas as pd
 import sys
@@ -25,7 +26,8 @@ def fetch_problem_name(path):
     return re.search(r"\'([^']*)\'", result.stdout)[1]
 
 
-prev_frames = pd.read_csv('.code/docs/data.csv')
+os.chdir('./code')
+prev_frames = pd.read_csv('./docs/data.csv')
 id_col, name_col, lang_col = prev_frames.columns
 n, repo_name = len(sys.argv), sys.argv[1]
 
