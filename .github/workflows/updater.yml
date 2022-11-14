@@ -17,10 +17,16 @@ jobs:
 
     steps:
 
-      - name: 📦 Checkout
+      - name: 📦 Checkout caller
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
+
+      - name: 📦 Checkout eureka-scraper
+        uses: actions/checkout@v3
+        with:
+          repository: leowajda/eureka-scraper
+          path: eureka-scraper
 
       - name: 🦺 Retrieve changed files
         id: changed-files
@@ -42,7 +48,7 @@ jobs:
         run: pip install -r .github/workflows/requirements.txt
 
       - name: 🚀 Run script
-        run: python .github/workflows/script.py ${{ github.event.repository.url }} ${{ steps.changed-files.outputs.all_changed_files }}
+        run: python eureka-scraper/.github/workflows/script.py ${{ github.event.repository.url }} ${{ steps.changed-files.outputs.all_changed_files }}
 
       - name: ✨ Auto-commit
         uses: stefanzweifel/git-auto-commit-action@v4
