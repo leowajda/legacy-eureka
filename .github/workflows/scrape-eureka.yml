@@ -28,7 +28,7 @@ jobs:
         run: pip install -r .github/workflows/requirements.txt
 
       - name: 🚀 Run script
-        run: python .github/workflows/scraper.py
+        run: python .github/workflows/scrape_eureka.py
 
       - name: ✨ Auto-commit
         uses: stefanzweifel/git-auto-commit-action@v4

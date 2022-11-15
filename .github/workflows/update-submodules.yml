@@ -1,12 +1,12 @@
 name: Update submodules
-run-name: 🚀 Update README.md
+run-name: ⬆️ Update submodules
 
 on:
   push:
     branches:
       - master
   schedule:
-    - cron:  '30 5,17 * * *'
+    - cron:  '20 5,17 * * *'
 
 jobs:
   scraper:
@@ -25,4 +25,4 @@ jobs:
       - name: ✨ Auto-commit
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
-          commit_message: ":arrow_up: Upgrade submodules"
+          commit_message: ":octocat: Upgrade submodules"
