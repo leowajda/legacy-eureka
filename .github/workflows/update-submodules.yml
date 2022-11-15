@@ -20,7 +20,7 @@ jobs:
           submodules: 'true'
 
       - name: ⬆️ Update submodules
-        run: git submodule update --remote
+        run: git submodule update --remote --merge
 
       - name: ✨ Auto-commit
         uses: stefanzweifel/git-auto-commit-action@v4
