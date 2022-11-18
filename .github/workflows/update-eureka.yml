@@ -23,11 +23,11 @@ jobs:
           path: code
           fetch-depth: 0
 
-      - name: 📦 Checkout eureka-scraper
+      - name: 📦 Checkout eureka
         uses: actions/checkout@v3
         with:
           path: script
-          repository: leowajda/eureka-scraper
+          repository: leowajda/eureka
 
       - name: 🦺 Retrieve changed files
         id: changed-files
@@ -43,6 +43,7 @@ jobs:
         uses: actions/setup-python@v4
         with:
           python-version: '3.9'
+          cache: 'pip'
 
       - name: 📌 Install pip dependencies
         run: pip install -r script/.github/workflows/requirements.txt
