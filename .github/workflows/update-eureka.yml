@@ -12,7 +12,7 @@ on:
         type: string
 
 jobs:
-  updater:
+  updater-workflow:
     runs-on: ubuntu-latest
 
     steps:
