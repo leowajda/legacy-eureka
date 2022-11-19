@@ -11,7 +11,7 @@ def fetch_id(path):
 
 def fetch_leetcode_url(path):
     name = fetch_problem_name(path)
-    url_name = re.sub(r"[^a-zA-Z0-9 ]", "", name).replace(" ", "-").lower()
+    url_name = re.sub(r"[^a-zA-Z0-9- ]", "", name).replace(" ", "-").lower()
     return f"[{name}](https://leetcode.com/problems/{url_name}/)"
 
 
