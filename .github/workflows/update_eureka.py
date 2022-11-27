@@ -31,7 +31,7 @@ prev_frames = pd.read_csv('./docs/data.csv')
 id_col, name_col, lang_col = prev_frames.columns
 n, repo_name = len(sys.argv), sys.argv[1]
 
-prev_frames = prev_frames.assign(lang_col=prev_frames[lang_col].str.strip().split(' ')).explode(lang_col)
+prev_frames = prev_frames.assign(lang_col=prev_frames[lang_col].str.strip().str.split(' ')).explode(lang_col)
 new_frames = [pd.DataFrame(
     [[fetch_id(sys.argv[i]), fetch_leetcode_url(sys.argv[i]), fetch_github_url(repo_name, sys.argv[i])]],
     columns=[id_col, name_col, lang_col]) for i in range(2, n)]
