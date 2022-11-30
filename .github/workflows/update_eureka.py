@@ -21,7 +21,7 @@ def fetch_github_url(repository_name, path):
 
 
 def fetch_problem_name(path):
-    command = f'git log --pretty=format:"%B" --follow -- {path} | tail -n 1'
+    command = f'git log --pretty=format:"%B" --follow -- {path} | head -n 1'
     result = subprocess.run([command], text=True, check=True, shell=True, stdout=subprocess.PIPE)
     return re.search(r"\'([^']*)\'", result.stdout)[1]
 
