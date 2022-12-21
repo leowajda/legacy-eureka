@@ -49,7 +49,7 @@ jobs:
         run: pip install -r script/.github/workflows/requirements.txt
 
       - name: 🚀 Run script
-        run: python script/.github/workflows/update_eureka.py ${{ github.event.repository.url }} ${{ steps.changed-files.outputs.all_changed_files }}
+        run: python script/.github/workflows/update_eureka.py ${{ github.event.repository.url }} ${{ steps.changed-files.outputs.added_files }}
 
       - name: ✨ Auto-commit
         uses: stefanzweifel/git-auto-commit-action@v4
