@@ -28,6 +28,19 @@ jobs:
       - name: 🚀 Run script
         run: python .github/workflows/scrape_eureka.py
 
+      - name: 📦 Verify changed files
+        uses: tj-actions/verify-changed-files@v16
+        id: verify-changed-files
+        with:
+          files: 'README.md'
+
+  committer:
+    runs-on: ubuntu-latest
+    needs: scraper
+    if: needs.scraper.steps.verify-changed-files.outputs.files_changed == 'true'
+
+    steps:
+
       - name: ✨ Auto-commit
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
