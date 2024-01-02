@@ -31,7 +31,7 @@ jobs:
 
       - name: 🦺 Retrieve changed files
         id: changed-files
-        uses: tj-actions/changed-files@v34
+        uses: tj-actions/changed-files@v41
         with:
           since_last_remote_commit: true
           files_ignore: ${{ inputs.file-ignore }}
