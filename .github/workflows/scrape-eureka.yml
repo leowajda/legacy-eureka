@@ -29,7 +29,7 @@ jobs:
         run: python .github/workflows/scrape_eureka.py
 
       - name: 📦 Verify changed files
-        uses: tj-actions/verify-changed-files@v16
+        uses: tj-actions/verify-changed-files@v17
         id: verify-changed-files
         with:
           files: 'README.md'
